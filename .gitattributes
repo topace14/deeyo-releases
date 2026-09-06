@@ -1,0 +1,4 @@
+# The image is bytes, not text. A newline conversion here would be invisible
+# until a reader refused the signature on an image it had already downloaded.
+*.bin binary
+*.json text eol=lf
