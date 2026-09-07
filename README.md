@@ -46,5 +46,6 @@ work. Serve an older image here and every reader walks back to it.
 
 | Version | Notes |
 |---|---|
+| 0.7.2 | Hands the radio back to WiFi: coexistence prefers WiFi, and the keyboard connection asks the host for an 80-120 ms interval. Before it, a reader on its own LAN measured 250 ms median ping and an eleven-minute update |
 | 0.7.1 | **Fixes 0.7.0 for readers updated over the air.** 0.7.0 renamed the NVS namespace credentials live under, so an upgraded reader booted with no WiFi and sat in its setup portal. 0.7.1 carries the old namespace forward, and an image on trial that cannot reach the television now restarts itself so the rollback actually happens |
 | 0.7.0 | Accepts both the old and new service names, in both mDNS and the health check. **Do not serve this to a reader that was ever on 0.6.0** |
