@@ -46,6 +46,9 @@ work. Serve an older image here and every reader walks back to it.
 
 | Version | Notes |
 |---|---|
+| 0.10.0 | **A reader belongs to one television.** It stores the id of the television that paired it and takes only that one; a second deeyo television in the house no longer captures its cards. Readers on older firmware keep taking whichever television answers first until the television holding their keyboard pairing adopts them, which the app that ships with this does by itself. Also resolves mDNS answers that arrive without an address (an onn 4K Pro), which used to cost a 2.5 s fallback and a subnet sweep on every rediscovery |
+| 0.9.0 | Takes its WiFi over Bluetooth from the television; the setup portal stays as the fallback |
+| 0.8.0 | Raises the setup portal alongside the retries when no known network is in range, so a reader that travels can be told about the new house |
 | 0.7.2 | Hands the radio back to WiFi: coexistence prefers WiFi, and the keyboard connection asks the host for an 80-120 ms interval. Before it, a reader on its own LAN measured 250 ms median ping and an eleven-minute update |
 | 0.7.1 | **Fixes 0.7.0 for readers updated over the air.** 0.7.0 renamed the NVS namespace credentials live under, so an upgraded reader booted with no WiFi and sat in its setup portal. 0.7.1 carries the old namespace forward, and an image on trial that cannot reach the television now restarts itself so the rollback actually happens |
 | 0.7.0 | Accepts both the old and new service names, in both mDNS and the health check. **Do not serve this to a reader that was ever on 0.6.0** |
