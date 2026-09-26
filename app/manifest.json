@@ -1,6 +1,9 @@
 {
-  "version": "0.3.0",
-  "versionCode": 5,
-  "commit": "a3f9f3c",
-  "url": "https://raw.githubusercontent.com/topace14/deeyo-releases/main/app/deeyo.apk"
+  "version": "0.3.1",
+  "versionCode": 6,
+  "commit": "8c14035",
+  "url": "https://raw.githubusercontent.com/topace14/deeyo-releases/main/app/deeyo.apk",
+  "rollout": {
+    "ids": ["260c7aa840c82813"]
+  }
 }
