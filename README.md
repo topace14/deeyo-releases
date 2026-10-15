@@ -39,6 +39,24 @@ television — not merely after booting. The failure worth protecting against is
 not a crash, which announces itself. It is firmware that runs perfectly and
 cannot talk to anything.
 
+## Boards
+
+The chip, its bus and its pins are compiled into the firmware, so each kind of
+reader has its own image, and one built for another board boots and never reads
+a card.
+
+| Board | Manifest | Image |
+|---|---|---|
+| `xiao`, the hand-built PN532 reader | `reader/manifest.json` | `reader/deeyo-scanner.bin` |
+| `mfrc522`, the custom reader board | `reader/mfrc522/manifest.json` | `reader/mfrc522/deeyo-scanner.bin` |
+
+**`reader/manifest.json` must only ever point at the PN532 build.** Readers
+before 0.10.1 do not say which board they are and install whatever it offers.
+From 0.10.1 a reader asks for its own board, and reads every image back for its
+board mark before booting it, so the wrong one is discarded rather than run.
+Every manifest but the legacy one says `"board"`; a television ignores one that
+names a board it was not fetched for.
+
 ## Versions
 
 Compared for **difference**, not order. That is deliberate: it makes downgrading
@@ -46,6 +64,7 @@ work. Serve an older image here and every reader walks back to it.
 
 | Version | Notes |
 |---|---|
+| 0.10.1 (`mfrc522` only) | **The first release for the custom reader board.** Receiver gain at 48 dB (cards read at about 3 cm instead of under 1), and the RF field on only for each poll's few milliseconds, ten times a second, instead of holding the transmitter at its 100 mA limit. Asks the television for its own board's image and refuses any other. Needs a television app that serves per-board releases to be offered this; an older one offers the PN532 build, which this refuses |
 | 0.10.0 | **A reader belongs to one television.** It stores the id of the television that paired it and takes only that one; a second deeyo television in the house no longer captures its cards. Readers on older firmware keep taking whichever television answers first until the television holding their keyboard pairing adopts them, which the app that ships with this does by itself. Also resolves mDNS answers that arrive without an address (an onn 4K Pro), which used to cost a 2.5 s fallback and a subnet sweep on every rediscovery |
 | 0.9.0 | Takes its WiFi over Bluetooth from the television; the setup portal stays as the fallback |
 | 0.8.0 | Raises the setup portal alongside the retries when no known network is in range, so a reader that travels can be told about the new house |
